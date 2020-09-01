@@ -3,10 +3,20 @@ const livroControlador = new LivroControlador();
 const Livro = require("../modelos/livro");
 
 const { check } = require('express-validator/check');
+const BaseControlador = require("../controladores/base-controlador");
+
+
 
 module.exports = (app) => {
-
     const rotasLivro = LivroControlador.rotas();
+
+    app.use(rotasLivro.autenticadas, function(req, resp, next) {
+        if (req.isAuthenticated()){
+            next();
+        }else {
+            resp.redirect(BaseControlador.rotas().login);
+        }
+    });
 
     app.get(rotasLivro.lista, livroControlador.lista());
 

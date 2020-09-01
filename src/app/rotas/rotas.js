@@ -1,5 +1,3 @@
-const LivroRotas = require('./livro-rotas');
-const BaseRotas = require('./base-rotas');
 const livroRotas = require('./livro-rotas');
 const baseRotas = require('./base-rotas');
 
